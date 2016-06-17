@@ -1,4 +1,2 @@
-.Rproj.user
+*.csv
 .Rhistory
-.RData
-*.ipynb

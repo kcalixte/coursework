@@ -3,6 +3,7 @@ library(dplyr)
 load('trips.RData')
 
 # count the number of trips (= rows in the data frame)
+
 NROW(trips) #[1] 5370361
 # find the earliest and latest birth years (see help for max and min to deal with NAs)
 > max(trips$birth_year, na.rm = TRUE)
@@ -21,3 +22,4 @@ count(trips, gender, sort = TRUE)
 count(trips, start_station_name, end_station_name, sort = TRUE)[1:10,]
 #count all trips that start and end on broadway
 count(filter(trips, grepl('Broadway', start_station_name), grepl('Broadway', end_station_name)))
+

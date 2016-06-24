@@ -54,13 +54,18 @@ trips_with_weather %>% group_by(ymd) %>% summarise(num = n()) %>% inner_join(wea
 
 # repeat this, splitting results by whether there was substantial precipitation or not
 # you'll need to decide what constitutes "substantial precipitation" and create a new T/F column to indicate this
+trips_with_weather %>% group_by(ymd) %>% summarise(num = n()) %>% inner_join(weather, by="ymd") %>% mutate(sub_percip = prcp > 40) %>% ggplot(aes(x = tmin, y = num, color = sub_percip)) + geom_point() + geom_smooth()
 
 # add a smoothed fit on top of the previous plot, using geom_smooth
+
 # compute the average number of trips and standard deviation in number of trips by hour of the day
 # hint: use the hour() function from the lubridate package
+View(trips %>% mutate(hourOfDay = hour(starttime)) %>% select(starttime, ymd, hourOfDay) %>% group_by(hourOfDay, ymd) %>% mutate(numPerDay = n()) %>% group_by(hourOfDay) %>% summarise(avg = mean(numPerDay), sdTrips = sd(numPerDay)))
 
 # plot the above
+ggplot(tripsHourDay, aes (x = hourOfDay, y = avg)) + geom_ribbon(ymin = (tripsHourDay$avg - tripsHourDay$sdTrips), ymax = (tripsHourDay$avg + tripsHourDay$sdTrips) )
 
 # repeat this, but now split the results by day of the week (Monday, Tuesday, ...) or weekday vs. weekend days
 # hint: use the wday() function from the lubridate package
-
+ #facet_wrap()
+#dayOfTheWeek using wday column group_by(ymd, dayOfWeek, hour) then group_by(dayOfWeek, hour), mean = mean(trips), sd = sd(trips)

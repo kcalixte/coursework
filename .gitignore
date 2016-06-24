@@ -1,2 +1,10 @@
 *.csv
 .Rhistory
+<<<<<<< HEAD
+=======
+*.RData
+*.ipynb
+*.csv
+*~
+*.zip
+>>>>>>> ade2273c3b8be0e9b068ab1e0c5e3dc02b3b5989

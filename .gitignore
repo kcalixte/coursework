@@ -1,3 +1,7 @@
 *.csv
 .Rhistory
 *.RData
+.Rproj.user
+*.ipynb
+*~
+*.zip
